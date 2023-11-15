@@ -1,11 +1,12 @@
-package com.example.dreamjournal.Models
+package com.example.dreamjournal.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import java.io.Serializable
+import java.util.Date
 
-@Entity(tableName = "logs")
-class Notes : Serializable{
+@Entity(tableName = "log")
+class Log : Serializable {
     @PrimaryKey(autoGenerate = true)
     var ID: Int = 0
 
@@ -19,7 +20,7 @@ class Notes : Serializable{
     var content: String = ""
 
     @ColumnInfo(name = "date")
-    var date: String = ""
+    var date: Date = Date() //java.util or java.sql?
 
 
 }
