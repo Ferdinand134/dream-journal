@@ -13,9 +13,6 @@ class Log : Serializable {
     @ColumnInfo(name = "title")
     var title: String = ""
 
-    @ColumnInfo(name = "sleepQuality")
-    var sleepQuality: Int = 0
-
     @ColumnInfo(name = "content")
     var content: String = ""
 
