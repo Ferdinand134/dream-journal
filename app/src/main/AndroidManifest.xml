@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DreamJournal"
         tools:targetApi="31">
         <activity
+            android:name=".LogsMakerActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>

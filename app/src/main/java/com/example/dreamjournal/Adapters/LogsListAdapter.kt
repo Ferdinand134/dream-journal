@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dreamjournal.LogsClickListener
 import com.example.dreamjournal.R
@@ -33,7 +34,14 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
         holder.logDate?.text = logsList[position].date.toString()
         holder.logDate?.isSelected = true
 
+        holder.logsContainer?.setOnClickListener {
+            listener.onClick(logsList[holder.adapterPosition])
+        }
 
+        holder.logsContainer?.setOnLongClickListener {
+            listener.onLongClick(logsList[holder.adapterPosition], holder.logsContainer as CardView)
+            false
+        }
     }
 }
 
