@@ -20,9 +20,31 @@
                 android:id="@+id/imageView_save"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_save"
+                android:padding="8dp"
                 android:background="@android:color/transparent"
                 android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+    <EditText
+        android:id="@+id/editText_title"
+        android:hint="Title: "
+        android:textColorHint="@color/vanilla"
+        android:padding="8dp"
+        android:textStyle="italic"
+        android:textSize="20sp"
+        android:textColor="@color/vanilla"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/editText_logs"
+        android:hint="Description: "
+        android:textColorHint="@color/vanilla"
+        android:padding="8dp"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textColor="@color/vanilla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

@@ -5,8 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    tools:ignore="ExtraText">
 
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView_home"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple"
+        app:queryHint="Search ..."
+        app:iconifiedByDefault="false"
+    />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -21,15 +32,27 @@
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_add_24"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="178dp"
+        android:layout_marginStart="180dp"
         android:layout_marginTop="620dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginBottom="55dp" />
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="55dp"
+        android:src="@drawable/baseline_add_24"/>
+
+    <ImageView
+        android:layout_width="756dp"
+        android:layout_height="526dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-100dp"
+        android:layout_marginEnd="-100dp"
+        android:layout_marginBottom="-329dp"
+        android:backgroundTint="@color/vanilla"
+        app:backgroundTint="@color/vanilla"
+        app:srcCompat="@drawable/baseline_circle_24" />
 
 </RelativeLayout>
 
