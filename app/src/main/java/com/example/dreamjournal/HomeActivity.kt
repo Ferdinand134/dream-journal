@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filter(newText?)
+                filter(newText!!)
                 return true
             }
         })
@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun filter(newText: String) {
-        val filteredList : List<Log> = ArrayList<Log>()
+        val filteredList : ArrayList<Log> = ArrayList<Log>()
         for (log in logsList) {
             if (log.title.lowercase().contains(newText.lowercase())
             || log.content.lowercase().contains(newText.lowercase())) {
