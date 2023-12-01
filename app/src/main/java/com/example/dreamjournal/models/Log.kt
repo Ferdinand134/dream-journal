@@ -18,6 +18,4 @@ class Log : Serializable {
 
     @ColumnInfo(name = "date")
     var date: Date = Date() //java.util or java.sql?
-
-
 }

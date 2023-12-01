@@ -40,7 +40,8 @@
         android:layout_marginTop="620dp"
         android:layout_marginEnd="175dp"
         android:layout_marginBottom="55dp"
-        android:src="@drawable/baseline_add_24"/>
+        android:src="@drawable/baseline_add_24"
+        android:contentDescription="Add Dream log" />
 
     <ImageView
         android:layout_width="756dp"
@@ -53,6 +54,10 @@
         android:backgroundTint="@color/vanilla"
         app:backgroundTint="@color/vanilla"
         app:srcCompat="@drawable/baseline_circle_24" />
+    <!--ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        app:srcCompat="@drawable/baseline_circle_24" /-->
 
 </RelativeLayout>
 

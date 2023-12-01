@@ -14,7 +14,7 @@ import com.example.dreamjournal.models.Log
 class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClickListener) :
     RecyclerView.Adapter<LogsViewHolder>() {
     val context : Context = context
-    val logsList : List<Log> = logsList
+    var logsList : List<Log> = logsList
     val listener : LogsClickListener = listener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogsViewHolder {
@@ -24,7 +24,11 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
     override fun getItemCount(): Int {
         return logsList.size
     }
-
+    
+    fun filterList(filteredList: List<Log>) {
+        logsList = filteredList
+        notifyDataSetChanged() // ??
+    }
     override fun onBindViewHolder(holder: LogsViewHolder, position: Int) {
         holder.logTitle?.text = logsList[position].title
         holder.logTitle?.isSelected = true

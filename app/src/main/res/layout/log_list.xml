@@ -51,6 +51,17 @@
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/log_date"
+            android:text="content"
+            android:textSize="10sp"
+            android:textColor="@color/vanilla"
+            android:maxLines="10"
+            android:textStyle="normal"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

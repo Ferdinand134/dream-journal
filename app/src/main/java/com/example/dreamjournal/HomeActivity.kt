@@ -12,7 +12,7 @@ import com.example.dreamjournal.database.RoomDB
 import com.example.dreamjournal.models.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.widget.SearchView
-import java.util.Locale
+
 class HomeActivity : AppCompatActivity() {
 
     var recyclerView : RecyclerView ?= null
@@ -63,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
                 filteredList.add(log)
             }
         }
+        logsListAdapter?.filterList(filteredList)
     }
 
     private fun updateRecycler(logsList: List<Log>) {
