@@ -44,6 +44,7 @@
         android:contentDescription="Add Dream log" />
 
     <ImageView
+        android:id="@+id/mun"
         android:layout_width="756dp"
         android:layout_height="526dp"
         android:layout_alignParentStart="true"
@@ -54,6 +55,32 @@
         android:backgroundTint="@color/vanilla"
         app:backgroundTint="@color/vanilla"
         app:srcCompat="@drawable/baseline_circle_24" />
+
+    <ImageView
+        android:id="@+id/sheep"
+        android:layout_width="809dp"
+        android:layout_height="709dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-100dp"
+        android:layout_marginEnd="-100dp"
+        android:layout_marginBottom="-76dp"
+        android:contentDescription="sheep"
+        app:srcCompat="@drawable/background_sheep" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="206dp"
+        android:layout_height="152dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginBottom="313dp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView1"
+        android:layout_width="206dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/giphy" />
     <!--ImageView
         android:layout_width="12dp"
         android:layout_height="12dp"

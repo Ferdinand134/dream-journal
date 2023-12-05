@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
         searchView_home = findViewById(R.id.searchView_home)
+
         updateRecycler(logsList)
 
         fab_add?.setOnClickListener {
