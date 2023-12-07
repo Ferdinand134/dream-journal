@@ -19,14 +19,14 @@
         app:iconifiedByDefault="false"
     />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!---androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp" /-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
@@ -63,7 +63,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-100dp"
         android:layout_marginEnd="-100dp"
-        android:layout_marginBottom="-76dp"
+        android:layout_marginBottom="-74dp"
         android:contentDescription="sheep"
         app:srcCompat="@drawable/background_sheep" />
 
@@ -79,7 +79,71 @@
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView1"
         android:layout_width="206dp"
-        android:layout_height="match_parent"
+        android:layout_height="156dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginBottom="168dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView2"
+        android:layout_width="113dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="208dp"
+        android:layout_marginBottom="553dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView3"
+        android:layout_width="206dp"
+        android:layout_height="156dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="226dp"
+        android:layout_marginBottom="135dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView4"
+        android:layout_width="206dp"
+        android:layout_height="156dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-5dp"
+        android:layout_marginBottom="522dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView5"
+        android:layout_width="58dp"
+        android:layout_height="73dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="327dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView6"
+        android:layout_width="206dp"
+        android:layout_height="156dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="203dp"
+        android:layout_marginBottom="507dp"
+        android:src="@drawable/giphy" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView7"
+        android:layout_width="93dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="330dp"
+        android:layout_marginBottom="444dp"
         android:src="@drawable/giphy" />
     <!--ImageView
         android:layout_width="12dp"
