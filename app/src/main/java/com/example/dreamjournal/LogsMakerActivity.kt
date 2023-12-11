@@ -37,7 +37,7 @@ class LogsMakerActivity : AppCompatActivity() {
                 val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
                 val date = Date()
 
-                log = Log()
+                /*log = Log()
 
                 log?.title = title
                 log?.content = description
@@ -45,6 +45,7 @@ class LogsMakerActivity : AppCompatActivity() {
 
                 val intent = Intent()
                 Intent.putExtra("log", log)
+                */
             }
         })
     }
