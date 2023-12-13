@@ -13,7 +13,7 @@ abstract class RoomDB : RoomDatabase() {
     abstract fun mainDAO(): MainDAO
     companion object {
         private var database:RoomDB? = null
-        private var DATABASE_NAME = "asdfghjkl"
+        private var DATABASE_NAME = "log"
 
 
         @Synchronized

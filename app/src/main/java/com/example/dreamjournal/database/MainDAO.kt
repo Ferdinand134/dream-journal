@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.dreamjournal.models.Log
-import java.util.Date
 
 @Dao
 interface MainDAO {
@@ -16,7 +15,7 @@ interface MainDAO {
     fun getAll(): List<Log>
 
     @Query("UPDATE log SET title = :title, content = :content, date = :date WHERE ID = :id")
-    fun update(id: Int, title: String, content: String, date: Date)
+    fun update(id: Int, title: String, content: String, date: String)
 
     @Delete
     fun delete(log: Log)

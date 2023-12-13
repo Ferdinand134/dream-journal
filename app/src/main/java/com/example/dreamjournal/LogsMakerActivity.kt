@@ -1,5 +1,6 @@
 package com.example.dreamjournal
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -44,7 +45,7 @@ class LogsMakerActivity : AppCompatActivity() {
                 log?.date = formatter.format(date)
 
                 val intent = Intent()
-                Intent.putExtra("log", log)
+                intent.putExtra("log", log)
             }
         })
     }
