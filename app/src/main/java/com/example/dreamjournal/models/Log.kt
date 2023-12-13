@@ -3,7 +3,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import java.io.Serializable
-import java.util.Date
+import java.sql.Date
 
 @Entity(tableName = "log")
 class Log : Serializable {
@@ -16,6 +16,4 @@ class Log : Serializable {
     @ColumnInfo(name = "content")
     var content: String = ""
 
-    @ColumnInfo(name = "date")
-    var date: Date = Date() //java.util or java.sql?
 }
