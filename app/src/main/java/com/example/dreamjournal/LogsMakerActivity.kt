@@ -11,6 +11,7 @@ import com.example.dreamjournal.models.Log
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.app.Activity 
 
 class LogsMakerActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
@@ -46,6 +47,8 @@ class LogsMakerActivity : AppCompatActivity() {
 
                 val intent = Intent()
                 intent.putExtra("log", log)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
             }
         })
     }

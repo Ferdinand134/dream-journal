@@ -72,6 +72,8 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="206dp"
+        android:hint="Date: "
+        android:textColor="@color/white"
         android:layout_height="152dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
@@ -80,13 +82,14 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView1"
-        android:layout_width="206dp"
-        android:layout_height="156dp"
+        
+        android:layout_width="253dp"
+        android:layout_height="212dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-3dp"
-        android:layout_marginBottom="168dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginBottom="112dp"
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView2"
@@ -94,9 +97,9 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="208dp"
-        android:layout_marginBottom="553dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginStart="195dp"
+        android:layout_marginBottom="540dp"
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView3"
@@ -106,47 +109,47 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="226dp"
         android:layout_marginBottom="135dp"
-        android:src="@drawable/giphy" />
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView4"
-        android:layout_width="206dp"
-        android:layout_height="156dp"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-5dp"
-        android:layout_marginBottom="522dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginBottom="468dp"
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView5"
-        android:layout_width="58dp"
-        android:layout_height="73dp"
+        android:layout_width="186dp"
+        android:layout_height="185dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="3dp"
-        android:layout_marginBottom="327dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginBottom="215dp"
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView6"
-        android:layout_width="206dp"
-        android:layout_height="156dp"
+        android:layout_width="278dp"
+        android:layout_height="196dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="203dp"
-        android:layout_marginBottom="507dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginStart="131dp"
+        android:layout_marginBottom="467dp"
+        android:src="@drawable/giphy2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView7"
-        android:layout_width="93dp"
-        android:layout_height="75dp"
+        android:layout_width="88dp"
+        android:layout_height="346dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="330dp"
-        android:layout_marginBottom="444dp"
-        android:src="@drawable/giphy" />
+        android:layout_marginStart="323dp"
+        android:layout_marginBottom="278dp"
+        android:src="@drawable/giphy2" />
     <!--ImageView
         android:layout_width="12dp"
         android:layout_height="12dp"

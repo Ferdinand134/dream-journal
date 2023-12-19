@@ -12,6 +12,7 @@ import com.example.dreamjournal.database.RoomDB
 import com.example.dreamjournal.models.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.widget.SearchView
+import android.app.Activity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -30,15 +31,17 @@ class HomeActivity : AppCompatActivity() {
         fab_add = findViewById(R.id.fab_add)
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
+
         searchView_home = findViewById(R.id.searchView_home)
 
         updateRecycler(logsList)
 
         fab_add?.setOnClickListener {
-            fun onClick(view: View)
-            {
+
+            fun onClick(view: View) {
                 val intent = Intent(this, LogsMakerActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, 123)
+
             }
         }
 
@@ -55,7 +58,17 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 123) {
+            if (resultCode == Activity.RESULT_OK) {
+                val l = intent.getSerializableExtra("log", Log::class.java)
+                database?.mainDAO()?.insert(l!!)
+                logsList = database!!.mainDAO().getAll()
+                logsListAdapter?.notifyDataSetChanged()
+            }
+        }
+    }
     private fun filter(newText: String) {
         val filteredList : ArrayList<Log> = ArrayList<Log>()
         for (log in logsList) {
@@ -75,5 +88,7 @@ class HomeActivity : AppCompatActivity() {
                 super.onClick(log)
     }})
     }
+
+
 }
 
