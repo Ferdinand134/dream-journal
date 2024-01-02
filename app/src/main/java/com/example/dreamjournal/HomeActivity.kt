@@ -12,6 +12,11 @@ import com.example.dreamjournal.models.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.widget.SearchView
 import android.app.Activity
+import android.widget.TextView
+import java.text.DateFormat
+import java.util.Date
+
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -21,18 +26,19 @@ class HomeActivity : AppCompatActivity() {
     var database : RoomDB  ?= null
     var fab_add : FloatingActionButton?= null
     var searchView_home : SearchView?= null
-
+    var date : TextView?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //recyclerView = findViewById(R.id.recyclerView)
+        date = findViewById(R.id.date)
         fab_add = findViewById(R.id.fab_add)
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
 
         searchView_home = findViewById(R.id.searchView_home)
-
+        val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date())
+        date?.text = currentDateTimeString
         //updateRecycler(logsList)
 
         fab_add?.setOnClickListener {

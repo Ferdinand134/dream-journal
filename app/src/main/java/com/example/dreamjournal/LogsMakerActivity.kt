@@ -11,7 +11,7 @@ import com.example.dreamjournal.models.Log
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import android.app.Activity 
+import android.app.Activity
 
 class LogsMakerActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
