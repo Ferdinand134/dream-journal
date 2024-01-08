@@ -13,7 +13,7 @@ import java.util.Date
 import java.util.Locale
 import android.app.Activity
 
-class LogsMakerActivity : AppCompatActivity() {
+class LogsListActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
     var editText_logs : EditText ?= null
     var imageView_save : ImageView ?= null
@@ -27,21 +27,8 @@ class LogsMakerActivity : AppCompatActivity() {
         editText_title = findViewById(R.id.editText_title)
         editText_logs = findViewById(R.id.editText_logs)
         imageView_save?.setOnClickListener{
-                val title : String = editText_title?.text?.toString()!!
-                val description : String = editText_logs?.text?.toString()!!
-
-                if (description.isEmpty()){
-                    Toast.makeText(this, "Please write about your dream", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
-                val date = Date()
 
                 log = Log()
-
-                log?.title = title
-                log?.content = description
-                log?.date = formatter.format(date)
 
                 val intent = Intent()
                 intent.putExtra("log", log)

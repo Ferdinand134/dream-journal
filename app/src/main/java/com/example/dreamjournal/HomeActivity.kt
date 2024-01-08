@@ -13,7 +13,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.widget.SearchView
 import android.app.Activity
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.Date
 
 
@@ -25,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
     var logsList : List<Log> = ArrayList<Log>()
     var database : RoomDB  ?= null
     var fab_add : FloatingActionButton?= null
+    var fab_list: FloatingActionButton? =null
     var searchView_home : SearchView?= null
     var date : TextView?= null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,17 +38,21 @@ class HomeActivity : AppCompatActivity() {
 
         date = findViewById(R.id.date)
         fab_add = findViewById(R.id.fab_add)
+        fab_list = findViewById(R.id.fab_list)
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
 
-        searchView_home = findViewById(R.id.searchView_home)
-        val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date())
+        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy").format(Date())
         date?.text = currentDateTimeString
         //updateRecycler(logsList)
 
         fab_add?.setOnClickListener {
-            val intent = Intent(this@HomeActivity, LogsMakerActivity::class.java)
-            startActivityForResult(intent, 123)
+            openLogsMakerForResult()
+        }
+
+        fab_list?.setOnClickListener {
+            val intent = Intent(this@HomeActivity, LogsListActivity::class.java)
+            startActivity(intent)
 
         }
 
@@ -60,7 +69,22 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    fun openLogsMakerForResult() {
+        startForResult.launch(Intent(this, LogsMakerActivity::class.java))
+    }
+
+
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val intent = result.data
+            val l = intent?.getSerializableExtra("log", Log::class.java)
+            database?.mainDAO()?.insert(l!!)
+            logsList = database!!.mainDAO().getAll()
+            logsListAdapter?.notifyDataSetChanged()
+        }
+    }
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123) {
             if (resultCode == Activity.RESULT_OK) {
@@ -70,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
                 logsListAdapter?.notifyDataSetChanged()
             }
         }
-    }
+    } */
     private fun filter(newText: String) {
         val filteredList : ArrayList<Log> = ArrayList<Log>()
         for (log in logsList) {
@@ -81,6 +105,8 @@ class HomeActivity : AppCompatActivity() {
         }
         logsListAdapter?.filterList(filteredList)
     }
+
+
 
     /*private fun updateRecycler(logsList: List<Log>) {
         recyclerView?.setHasFixedSize(true)
