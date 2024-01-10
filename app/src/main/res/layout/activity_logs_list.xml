@@ -14,6 +14,17 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"/>
 
+    <TextView
+        android:id="@+id/textView_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="8dp"
+        android:text="Start adding Notes.."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/logsList_back"
         android:layout_width="wrap_content"

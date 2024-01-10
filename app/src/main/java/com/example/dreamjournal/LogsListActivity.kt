@@ -3,10 +3,14 @@ package com.example.dreamjournal
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.dreamjournal.Adapters.LogsListAdapter
+import com.example.dreamjournal.database.RoomDB
 import com.example.dreamjournal.models.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -15,7 +19,10 @@ class LogsListActivity : AppCompatActivity() {
     var recyclerView : RecyclerView ?= null
     var fab_back : FloatingActionButton ?= null
     var logsListAdapter : LogsListAdapter?= null
-    var logs = ArrayList<Log>()
+    var logs : List<Log> = ArrayList<Log>()
+    var database: RoomDB? = null
+    var selectedLog: Log? = null
+    var textView_placeholder: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logs_list)
@@ -23,18 +30,14 @@ class LogsListActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         fab_back = findViewById(R.id.logsList_back)
+        database = RoomDB.getInstance(this);
+        logs = database!!.mainDAO().getAll()
 
-        val noteClickListener = LogsClickListener {
-            fun onClick(notes: Notes?) {
-                val intent = Intent(this@MainActivity, NoteTakerActivity::class.java)
-                intent.putExtra("old_note", notes)
-                startActivityForResult(intent, 102)
-            }
-
-            fun onLongClick(notes: Notes, cardView: CardView?) {
-                selectedNote = Notes()
-                selectedNote = notes
-                showPopup(cardView)
+        updateRecycler(logs);
+        val logsClickListener = object : LogsClickListener {
+            override fun onClick(log : Log) {
+                val intent = Intent(this@LogsListActivity, LogsMakerActivity::class.java)
+                startActivity(intent)
             }
         }
         logsListAdapter = LogsListAdapter(this, logs, logsClickListener)
@@ -44,7 +47,21 @@ class LogsListActivity : AppCompatActivity() {
             setResult(Activity.RESULT_CANCELED, intent)
             finish()
         }
+
+
     }
 
+    private fun updateRecycler(logsList: List<Log>) {
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
+        if (!logs.isEmpty()){
+            textView_placeholder?.visibility = View.GONE;
+        }
+
+        logsListAdapter = LogsListAdapter(this, logsList, object : LogsClickListener {
+            override fun onClick(log: Log) {
+                super.onClick(log)
+            }})
+    }
 }

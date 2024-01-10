@@ -24,13 +24,13 @@ import java.util.Locale
 class HomeActivity : AppCompatActivity() {
 
     //var recyclerView : RecyclerView ?= null
-    var logsListAdapter : LogsListAdapter ?= null
-    var logsList : List<Log> = ArrayList<Log>()
-    var database : RoomDB  ?= null
-    var fab_add : FloatingActionButton?= null
-    var fab_list: FloatingActionButton? =null
-    var searchView_home : SearchView?= null
-    var date : TextView?= null
+    var logsListAdapter: LogsListAdapter? = null
+    var logsList: List<Log> = ArrayList<Log>()
+    var database: RoomDB? = null
+    var fab_add: FloatingActionButton? = null
+    var fab_list: FloatingActionButton? = null
+    var searchView_home: SearchView? = null
+    var date: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,7 +40,8 @@ class HomeActivity : AppCompatActivity() {
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
         date = findViewById(R.id.date)
-        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy", Locale.US).format(Date()) //lmao
+        val currentDateTimeString =
+            SimpleDateFormat("EEE, dd MMM yyy", Locale.US).format(Date()) //lmao
         date?.text = currentDateTimeString
 
         //updateRecycler(logsList)
@@ -50,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         fab_list?.setOnClickListener {
-            val intent = Intent(this@HomeActivity, LogsListActivity::class.java)
+            val intent = Intent(this, LogsListActivity::class.java)
             startActivity(intent)
 
         }
@@ -68,21 +69,23 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
     fun openLogsMakerForResult() {
         startForResult.launch(Intent(this, LogsMakerActivity::class.java))
     }
 
 
-    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            val l = intent?.getSerializableExtra("log", Log::class.java)
-            database?.mainDAO()?.insert(l!!)
-            logsList = database!!.mainDAO().getAll()
-            logsListAdapter?.notifyDataSetChanged()
+    val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val l = intent?.getSerializableExtra("log", Log::class.java)
+                database?.mainDAO()?.insert(l!!)
+                logsList = database!!.mainDAO().getAll()
+                logsListAdapter?.notifyDataSetChanged()
+            }
         }
-    }
+
     /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123) {
@@ -95,16 +98,16 @@ class HomeActivity : AppCompatActivity() {
         }
     } */
     private fun filter(newText: String) {
-        val filteredList : ArrayList<Log> = ArrayList<Log>()
+        val filteredList: ArrayList<Log> = ArrayList<Log>()
         for (log in logsList) {
             if (log.title.lowercase().contains(newText.lowercase())
-                || log.content.lowercase().contains(newText.lowercase())) {
+                || log.content.lowercase().contains(newText.lowercase())
+            ) {
                 filteredList.add(log)
             }
         }
         logsListAdapter?.filterList(filteredList)
     }
-
 
 
     /*private fun updateRecycler(logsList: List<Log>) {
@@ -113,5 +116,6 @@ class HomeActivity : AppCompatActivity() {
         logsListAdapter = LogsListAdapter(this, logsList, object : LogsClickListener {
             override fun onClick(log: Log) {
                 super.onClick(log)
-    }})*/
+    }})
+*/
 }
