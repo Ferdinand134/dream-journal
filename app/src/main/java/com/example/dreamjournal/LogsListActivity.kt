@@ -8,9 +8,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.dreamjournal.models.Log
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import android.app.Activity
 
 class LogsListActivity : AppCompatActivity() {
