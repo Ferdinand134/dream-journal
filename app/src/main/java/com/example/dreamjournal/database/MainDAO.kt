@@ -14,8 +14,8 @@ interface MainDAO {
     @Query("SELECT * FROM log ORDER BY id DESC")
     fun getAll(): List<Log>
 
-    @Query("UPDATE log SET title = :title, content = :content, date = :date WHERE ID = :id")
-    fun update(id: Int, title: String, content: String, date: String)
+    @Query("UPDATE log SET title = :title, content = :content, WHERE ID = :id")
+    fun update(id: Int, title: String, content: String)
 
     @Delete
     fun delete(log: Log)
