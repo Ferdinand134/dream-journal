@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
 
-        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy").format(Date())
+        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy").format(Date()) //lmao
         date?.text = currentDateTimeString
         //updateRecycler(logsList)
 
