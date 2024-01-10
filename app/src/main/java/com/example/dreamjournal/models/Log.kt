@@ -3,10 +3,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import java.io.Serializable
-import java.util.Date
-import java.text.SimpleDateFormat
-import java.util.Locale
-
 
 @Entity(tableName = "log")
 class Log : Serializable {
@@ -18,7 +14,4 @@ class Log : Serializable {
 
     @ColumnInfo(name = "content")
     var content: String = ""
-
-    @ColumnInfo(name = "date")
-    var date = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH).format(Date())
 }

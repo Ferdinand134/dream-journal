@@ -16,10 +16,9 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
-
+import java.util.Locale
 
 
 class HomeActivity : AppCompatActivity() {
@@ -36,14 +35,14 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        date = findViewById(R.id.date)
         fab_add = findViewById(R.id.fab_add)
         fab_list = findViewById(R.id.fab_list)
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
 
-        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy").format(Date()) //lmao
+        val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy", Locale.US).format(Date()) //lmao
         date?.text = currentDateTimeString
+
         //updateRecycler(logsList)
 
         fab_add?.setOnClickListener {
