@@ -9,11 +9,14 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.dreamjournal.models.Log
 import android.app.Activity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.SimpleDateFormat
 
 class LogsMakerActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
     var editText_logs : EditText ?= null
     var imageView_save : ImageView ?= null
+    var fab_back : FloatingActionButton ?= null
     var log : Log ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +26,7 @@ class LogsMakerActivity : AppCompatActivity() {
         imageView_save = findViewById(R.id.imageView_save)
         editText_title = findViewById(R.id.editText_title)
         editText_logs = findViewById(R.id.editText_logs)
+        fab_back = findViewById(R.id.fab_back)
         imageView_save?.setOnClickListener{
                 val title : String = editText_title?.text?.toString()!!
                 val description : String = editText_logs?.text?.toString()!!
@@ -31,8 +35,8 @@ class LogsMakerActivity : AppCompatActivity() {
                     Toast.makeText(this, "Please write about your dream", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
-                val date = Date()
+                //val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
+                //val date = Date()
 
                 log = Log()
 
@@ -43,6 +47,12 @@ class LogsMakerActivity : AppCompatActivity() {
                 intent.putExtra("log", log)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
+        }
+
+        fab_back?.setOnClickListener{
+            val intent = Intent()
+            setResult(Activity.RESULT_CANCELED, intent)
+            finish()
         }
     }
 }

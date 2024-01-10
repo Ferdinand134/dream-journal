@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
         fab_list = findViewById(R.id.fab_list)
         database = RoomDB.getInstance(this)
         logsList = database!!.mainDAO().getAll()
-
+        date = findViewById(R.id.date)
         val currentDateTimeString = SimpleDateFormat("EEE, dd MMM yyy", Locale.US).format(Date()) //lmao
         date?.text = currentDateTimeString
 

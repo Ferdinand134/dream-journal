@@ -17,15 +17,6 @@
         android:background="@drawable/bar"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"/>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
@@ -82,7 +73,7 @@
         app:srcCompat="@drawable/background_sheep"
         />
 
-    <!--TextView
+    <TextView
         android:id="@+id/date"
         android:layout_width="206dp"
         android:hint="Date: "
@@ -91,7 +82,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="115dp"
-        android:layout_marginBottom="313dp" /-->
+        android:layout_marginBottom="313dp" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView1"
