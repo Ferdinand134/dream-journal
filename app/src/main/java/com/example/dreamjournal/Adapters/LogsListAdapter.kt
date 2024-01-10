@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dreamjournal.LogsClickListener
 import com.example.dreamjournal.R
 import com.example.dreamjournal.models.Log
+
 
 class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClickListener) :
     RecyclerView.Adapter<LogsViewHolder>() {
@@ -39,20 +41,21 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
             listener.onClick(logsList[holder.adapterPosition])
         }
 
-        holder.logsContainer?.setOnLongClickListener {
+        /*holder.logsContainer?.setOnLongClickListener {
             listener.onLongClick(logsList[holder.adapterPosition], holder.logsContainer as CardView)
             false
-        }
+        }*/
     }
 }
 
 class LogsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val logsContainer : View ?= null
-    val logTitle : TextView ?= null
-    val logContent : TextView ?= null
+    var logsContainer : CardView ?= null
+    var logTitle : TextView ?= null
+    var logContent : TextView ?= null
     init {
-        val logsContainer = itemView.findViewById<View>(R.id.logs_container)
-        val logTitle = itemView.findViewById<TextView>(R.id.log_title)
-        val logContent = itemView.findViewById<TextView>(R.id.log_content)
+        logsContainer = itemView.findViewById<CardView>(R.id.logs_container)
+        logTitle = itemView.findViewById<TextView>(R.id.log_title)
+        logContent = itemView.findViewById<TextView>(R.id.log_content)
     }
 }
+

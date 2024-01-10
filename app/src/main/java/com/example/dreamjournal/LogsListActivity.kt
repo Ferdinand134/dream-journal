@@ -51,11 +51,12 @@ class LogsListActivity : AppCompatActivity() {
 
     }
 
+
     private fun updateRecycler(logsList: List<Log>) {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
-        if (!logs.isEmpty()){
+        if (logs.isNotEmpty()){
             textView_placeholder?.visibility = View.GONE;
         }
 
