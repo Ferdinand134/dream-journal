@@ -8,9 +8,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.dreamjournal.models.Log
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import android.app.Activity
 
 class LogsMakerActivity : AppCompatActivity() {
@@ -41,7 +38,6 @@ class LogsMakerActivity : AppCompatActivity() {
 
                 log?.title = title
                 log?.content = description
-                log?.date = formatter.format(date)
 
                 val intent = Intent()
                 intent.putExtra("log", log)
