@@ -35,9 +35,6 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
 
         holder.logContent?.text = logsList[position].content
 
-        holder.logDate?.text = logsList[position].date.toString()
-        holder.logDate?.isSelected = true
-
         holder.logsContainer?.setOnClickListener {
             listener.onClick(logsList[holder.adapterPosition])
         }
@@ -52,12 +49,10 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
 class LogsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val logsContainer : View ?= null
     val logTitle : TextView ?= null
-    val logDate : TextView ?= null
     val logContent : TextView ?= null
     init {
         val logsContainer = itemView.findViewById<View>(R.id.logs_container)
         val logTitle = itemView.findViewById<TextView>(R.id.log_title)
-        val logDate = itemView.findViewById<TextView>(R.id.log_date)
         val logContent = itemView.findViewById<TextView>(R.id.log_content)
     }
 }
