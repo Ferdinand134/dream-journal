@@ -18,7 +18,7 @@ class LogsMakerActivity : AppCompatActivity() {
     var imageView_save : ImageView ?= null
     var fab_back : FloatingActionButton ?= null
     var log : Log ?= null
-
+    var isOldLog = false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logs_maker)
@@ -27,6 +27,14 @@ class LogsMakerActivity : AppCompatActivity() {
         editText_title = findViewById(R.id.editText_title)
         editText_logs = findViewById(R.id.editText_logs)
         fab_back = findViewById(R.id.fab_back)
+
+        log = intent.getSerializableExtra("old_note", Log::class.java)
+        if (log != null) {
+            editText_title?.setText(log?.title);
+            editText_logs?.setText(log?.content);
+            isOldLog = true;
+        }
+
         imageView_save?.setOnClickListener{
                 val title : String = editText_title?.text?.toString()!!
                 val description : String = editText_logs?.text?.toString()!!
@@ -38,7 +46,7 @@ class LogsMakerActivity : AppCompatActivity() {
                 //val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
                 //val date = Date()
 
-                log = Log()
+                if (!isOldLog) log = Log()
 
                 log?.title = title
                 log?.content = description

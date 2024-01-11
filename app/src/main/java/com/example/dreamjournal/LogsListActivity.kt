@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +23,6 @@ class LogsListActivity : AppCompatActivity() {
     var logsListAdapter : LogsListAdapter?= null
     var logs : List<Log> = ArrayList<Log>()
     var database: RoomDB? = null
-    var selectedLog: Log? = null
     var textView_placeholder: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +33,12 @@ class LogsListActivity : AppCompatActivity() {
         fab_back = findViewById(R.id.logsList_back)
         database = RoomDB.getInstance(this);
         logs = database!!.mainDAO().getAll()
+        textView_placeholder = findViewById(R.id.textView_placeholder)
 
         updateRecycler(logs);
         val logsClickListener = object : LogsClickListener {
             override fun onClick(log : Log) {
-                val intent = Intent(this@LogsListActivity, LogsMakerActivity::class.java)
-                startActivity(intent)
+                openLogsMakerForResult(log)
             }
         }
         logsListAdapter = LogsListAdapter(this, logs, logsClickListener)
@@ -51,18 +52,38 @@ class LogsListActivity : AppCompatActivity() {
 
     }
 
+    fun openLogsMakerForResult(log : Log) {
+        val intent = Intent(this, LogsMakerActivity::class.java)
+        intent.putExtra("old_note", log)
+        startForResult.launch(intent)
+    }
+
+
+    val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val l = intent?.getSerializableExtra("log", Log::class.java)
+                database?.mainDAO()?.insert(l!!)
+                logs = database!!.mainDAO().getAll()
+                logsListAdapter?.notifyDataSetChanged()
+                updateRecycler(logs)
+            }
+        }
 
     private fun updateRecycler(logsList: List<Log>) {
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
         if (logs.isNotEmpty()){
-            textView_placeholder?.visibility = View.GONE;
+            textView_placeholder?.setVisibility(View.GONE)
         }
+
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
         logsListAdapter = LogsListAdapter(this, logsList, object : LogsClickListener {
             override fun onClick(log: Log) {
                 super.onClick(log)
             }})
+        recyclerView?.setAdapter(logsListAdapter)
     }
 }

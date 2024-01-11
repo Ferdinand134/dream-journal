@@ -39,7 +39,7 @@
             android:textColorHint="@color/vanilla"
             android:padding="8dp"
             android:textStyle="italic"
-            android:fontFamily="@font/ptserif_regular"
+            android:fontFamily="@font/mulish_bold"
             android:textSize="20sp"
             android:textColor="@color/vanilla"
             android:singleLine="true"

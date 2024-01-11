@@ -16,7 +16,17 @@
         android:layout_height="60dp"
         android:background="@drawable/bar"/>
 
-
+    <TextView
+        android:id="@+id/title_home"
+        android:text="Dream Journal"
+        android:hint="title"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/ptserif_regular"
+        />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
@@ -71,19 +81,19 @@
         android:layout_marginBottom="-74dp"
         android:contentDescription="sheep"
         app:srcCompat="@drawable/background_sheep"
+
         />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="206dp"
+        android:text="Date"
         android:hint="Date: "
         android:textColor="@color/white"
-        android:layout_height="152dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:fontFamily="@font/ptserif_regular"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="115dp"
-        android:layout_marginBottom="313dp" />
+        />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView1"

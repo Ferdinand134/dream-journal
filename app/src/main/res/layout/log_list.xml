@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/dark"
+    app:cardBackgroundColor="@color/purple"
     android:id="@+id/logs_container"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
@@ -28,7 +28,9 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mulish_bold"
+                />
         </RelativeLayout>
         <TextView
             android:id="@+id/log_content"
@@ -39,7 +41,9 @@
             android:textStyle="normal"
             android:padding="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_variablefont_wdth_wght"
+            />
         <!--TextView
             android:id="@+id/log_date"
             android:text="date"

@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:padding="8dp"
-        android:text="Start adding Notes.."
+        android:text="Start adding logs..."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp" />
