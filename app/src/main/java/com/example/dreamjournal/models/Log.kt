@@ -14,4 +14,7 @@ class Log : Serializable {
 
     @ColumnInfo(name = "content")
     var content: String = ""
+    
+    @ColumnInfo(name = "date")
+    var date: String = ""
 }

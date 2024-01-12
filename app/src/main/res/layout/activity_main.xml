@@ -93,6 +93,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:fontFamily="@font/ptserif_regular"
+        android:textSize="28dp"
+        android:layout_marginBottom="48dp"
         />
 
     <pl.droidsonroids.gif.GifImageView

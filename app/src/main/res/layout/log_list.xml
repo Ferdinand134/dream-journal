@@ -44,16 +44,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_variablefont_wdth_wght"
             />
-        <!--TextView
+        <TextView
             android:id="@+id/log_date"
             android:text="date"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="@color/vanilla"
             android:maxLines="10"
             android:textStyle="normal"
             android:padding="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/-->
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

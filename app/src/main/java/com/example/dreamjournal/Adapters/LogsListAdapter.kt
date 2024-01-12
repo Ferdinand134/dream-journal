@@ -36,7 +36,7 @@ class LogsListAdapter(context: Context, logsList: List<Log>, listener: LogsClick
         holder.logTitle?.isSelected = true
 
         holder.logContent?.text = logsList[position].content
-
+        holder.logDate?.text = "Logged " + logsList[position].date
         holder.logsContainer?.setOnClickListener {
             listener.onClick(logsList[holder.adapterPosition])
         }
@@ -52,10 +52,12 @@ class LogsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var logsContainer : CardView ?= null
     var logTitle : TextView ?= null
     var logContent : TextView ?= null
+    var logDate : TextView ?= null
     init {
         logsContainer = itemView.findViewById<CardView>(R.id.logs_container)
         logTitle = itemView.findViewById<TextView>(R.id.log_title)
         logContent = itemView.findViewById<TextView>(R.id.log_content)
+        logDate = itemView.findViewById<TextView>(R.id.log_date)
     }
 }
 

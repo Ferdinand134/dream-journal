@@ -11,6 +11,8 @@ import com.example.dreamjournal.models.Log
 import android.app.Activity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class LogsMakerActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
@@ -46,7 +48,10 @@ class LogsMakerActivity : AppCompatActivity() {
                 //val formatter = SimpleDateFormat("EEE, dd MMM yyy HH:mm a", Locale.ENGLISH)
                 //val date = Date()
 
-                if (!isOldLog) log = Log()
+                if (!isOldLog) {
+                    log = Log()
+                    log?.date = SimpleDateFormat("dd MMM yyy", Locale.US).format(Date())
+                }
 
                 log?.title = title
                 log?.content = description

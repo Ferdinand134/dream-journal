@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="columbia">#C3D8EC</color>
+    <color name="columbia">#646980</color>
     <color name="vanilla">#FCE79C</color>
     <color name="purple">#5E37A3</color>
     <!--<color name="purple">#140152</color> -->
