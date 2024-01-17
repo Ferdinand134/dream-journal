@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/log_content"
             android:text="bontent"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@color/vanilla"
             android:maxLines="10"
             android:textStyle="normal"
@@ -47,7 +47,7 @@
         <TextView
             android:id="@+id/log_date"
             android:text="date"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/vanilla"
             android:maxLines="10"
             android:textStyle="normal"

@@ -85,8 +85,8 @@
         />
 
     <TextView
-        android:id="@+id/date"
         android:text="Date"
+        android:id="@+id/date"
         android:hint="Date: "
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -94,8 +94,8 @@
         android:gravity="center"
         android:fontFamily="@font/ptserif_regular"
         android:textSize="28dp"
-        android:layout_marginBottom="48dp"
-        />
+        android:layout_marginBottom="100dp"
+android:layout_marginLeft="20dp" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView1"
