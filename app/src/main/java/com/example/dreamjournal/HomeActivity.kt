@@ -3,9 +3,6 @@ package com.example.dreamjournal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.dreamjournal.Adapters.LogsListAdapter
 import com.example.dreamjournal.database.RoomDB
 import com.example.dreamjournal.models.Log
@@ -14,8 +11,8 @@ import androidx.appcompat.widget.SearchView
 import android.app.Activity
 import android.widget.TextView
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.dreamjournal.models.Tag
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -38,8 +35,19 @@ class HomeActivity : AppCompatActivity() {
         fab_add = findViewById(R.id.fab_add)
         fab_list = findViewById(R.id.fab_list)
         database = RoomDB.getInstance(this)
-        logsList = database!!.mainDAO().getAll()
+        logsList = database!!.mainDAO().getAllLogs()
         date = findViewById(R.id.date)
+
+        if (database!!.mainDAO().getAllTags().isEmpty()) {
+            val tagNames = arrayOf("happy", "nightmare", "lucid", "sad", "vivid")
+            for (t in tagNames) {
+                val tag = Tag()
+                tag.title = t
+                database!!.mainDAO().insert(tag)
+            }
+        }
+
+
         val currentDateTimeString =
             SimpleDateFormat("EEE, dd MMM yyy", Locale.US).format(Date()) //lmao
         date?.text = currentDateTimeString
@@ -53,7 +61,6 @@ class HomeActivity : AppCompatActivity() {
         fab_list?.setOnClickListener {
             val intent = Intent(this, LogsListActivity::class.java)
             startActivity(intent)
-
         }
 
         searchView_home?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -81,7 +88,7 @@ class HomeActivity : AppCompatActivity() {
                 val intent = result.data
                 val l = intent?.getSerializableExtra("log", Log::class.java)
                 database?.mainDAO()?.insert(l!!)
-                logsList = database!!.mainDAO().getAll()
+                logsList = database!!.mainDAO().getAllLogs()
                 logsListAdapter?.notifyDataSetChanged()
             }
         }

@@ -32,7 +32,7 @@ class LogsListActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         fab_back = findViewById(R.id.logsList_back)
         database = RoomDB.getInstance(this);
-        logs = database!!.mainDAO().getAll()
+        logs = database!!.mainDAO().getAllLogs()
         textView_placeholder = findViewById(R.id.textView_placeholder)
 
         updateRecycler(logs);
@@ -65,7 +65,7 @@ class LogsListActivity : AppCompatActivity() {
                 val intent = result.data
                 val l = intent?.getSerializableExtra("log", Log::class.java)
                 database?.mainDAO()?.insert(l!!)
-                logs = database!!.mainDAO().getAll()
+                logs = database!!.mainDAO().getAllLogs()
                 logsListAdapter?.notifyDataSetChanged()
                 updateRecycler(logs)
             }
