@@ -24,6 +24,8 @@ class LogsMakerActivity : AppCompatActivity() {
     var fab_back : FloatingActionButton ?= null
     var tagGroup : ChipGroup ?= null
     var log : Log ?= null
+    var selectedTags : List<Tag> = ArrayList<Tag>() //??
+    var logTagMap : LogTagMap ?= null
     var isOldLog = false;
     var tags : List<Tag> = ArrayList<Tag>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +53,10 @@ class LogsMakerActivity : AppCompatActivity() {
                 val title : String = editText_title?.text?.toString()!!
                 val description : String = editText_logs?.text?.toString()!!
 
-                if (description.isEmpty()){
+                if (title.isEmpty()) {
+                    Toast.makeText(this, "Please title your dream", Toast.LENGTH_SHORT).show()
+                    return @setOnClickListener
+                } else if (description.isEmpty()){
                     Toast.makeText(this, "Please write about your dream", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
@@ -65,7 +70,8 @@ class LogsMakerActivity : AppCompatActivity() {
 
                 log?.title = title
                 log?.content = description
-
+                selectedTags = tagGroup.idk
+            
                 val intent = Intent()
                 intent.putExtra("log", log)
                 setResult(Activity.RESULT_OK, intent)
@@ -83,7 +89,7 @@ class LogsMakerActivity : AppCompatActivity() {
         val tag = Chip(this)
         tag.text = tagText
         //tag.setTextColor(resources.getColor(R.color.white))
-
+        tag.checkable = true
         tagGroup.addView(tag)
     }
 }
