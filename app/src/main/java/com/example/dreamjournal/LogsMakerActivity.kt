@@ -44,9 +44,11 @@ class LogsMakerActivity : AppCompatActivity() {
             editText_logs?.setText(log?.content);
             isOldLog = true;
         }
+        logTagMap = intent.getSerializableExtra("old_map", LogTagMap::class.java)
+        
         tags = intent.getBundleExtra("tags")!!.getSerializable("tags", ArrayList::class.java)!! as ArrayList<Tag>
         for (t in tags) {
-            addTag(t.title, tagGroup!!)
+            addTag(t, tagGroup!!)
         }
 
         imageView_save?.setOnClickListener{
@@ -66,12 +68,15 @@ class LogsMakerActivity : AppCompatActivity() {
                 if (!isOldLog) {
                     log = Log()
                     log?.date = SimpleDateFormat("dd MMM yyy", Locale.US).format(Date())
+                    logTagMap = LogTagMap()
                 }
 
                 log?.title = title
                 log?.content = description
-                selectedTags = tagGroup.idk
-            
+                val selectedTagIDs = tagGroup.getCheckedChipIds()
+                for (i in selectedTagIDs) {
+                    // do things with logtagmap
+                }
                 val intent = Intent()
                 intent.putExtra("log", log)
                 setResult(Activity.RESULT_OK, intent)
@@ -85,11 +90,11 @@ class LogsMakerActivity : AppCompatActivity() {
         }
     }
 
-    private fun addTag(tagText: String, tagGroup : ChipGroup) {
-        val tag = Chip(this)
-        tag.text = tagText
-        //tag.setTextColor(resources.getColor(R.color.white))
-        tag.checkable = true
-        tagGroup.addView(tag)
+    private fun addTag(tag : Tag, chipGroup : ChipGroup) {
+        val chip = Chip(this)
+        chip.text = tag.title
+        chip.checkable = true
+        chip.setId(tag.ID)
+        chipGroup.addView(chip)
     }
 }
