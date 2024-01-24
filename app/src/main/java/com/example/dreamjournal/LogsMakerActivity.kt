@@ -44,7 +44,7 @@ class LogsMakerActivity : AppCompatActivity() {
             editText_logs?.setText(log?.content);
             isOldLog = true;
         }
-        logTagMap = intent.getSerializableExtra("old_map", LogTagMap::class.java)
+        //logTagMap = intent.getSerializableExtra("old_map", LogTagMap::class.java)
         
         tags = intent.getBundleExtra("tags")!!.getSerializable("tags", ArrayList::class.java)!! as ArrayList<Tag>
         for (t in tags) {
