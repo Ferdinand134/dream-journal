@@ -1,26 +1,31 @@
 package com.example.dreamjournal
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dreamjournal.models.Log
-import android.app.Activity
+import com.example.dreamjournal.models.Tag
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
 
 class LogsMakerActivity : AppCompatActivity() {
     var editText_title : EditText ?= null
     var editText_logs : EditText ?= null
     var imageView_save : ImageView ?= null
     var fab_back : FloatingActionButton ?= null
+    var tagGroup : ChipGroup ?= null
     var log : Log ?= null
     var isOldLog = false;
+    var tags : List<Tag> = ArrayList<Tag>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logs_maker)
@@ -29,12 +34,17 @@ class LogsMakerActivity : AppCompatActivity() {
         editText_title = findViewById(R.id.editText_title)
         editText_logs = findViewById(R.id.editText_logs)
         fab_back = findViewById(R.id.fab_back)
+        tagGroup = findViewById(R.id.tagGroup)
 
         log = intent.getSerializableExtra("old_note", Log::class.java)
         if (log != null) {
             editText_title?.setText(log?.title);
             editText_logs?.setText(log?.content);
             isOldLog = true;
+        }
+        tags = intent.getBundleExtra("tags")!!.getSerializable("tags", ArrayList::class.java)!! as ArrayList<Tag>
+        for (t in tags) {
+            addTag(t.title, tagGroup!!)
         }
 
         imageView_save?.setOnClickListener{
@@ -67,5 +77,13 @@ class LogsMakerActivity : AppCompatActivity() {
             setResult(Activity.RESULT_CANCELED, intent)
             finish()
         }
+    }
+
+    private fun addTag(tagText: String, tagGroup : ChipGroup) {
+        val tag = Chip(this)
+        tag.text = tagText
+        //tag.setTextColor(resources.getColor(R.color.white))
+
+        tagGroup.addView(tag)
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.dreamjournal.models.Tag
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -23,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
     //var recyclerView : RecyclerView ?= null
     var logsListAdapter: LogsListAdapter? = null
     var logsList: List<Log> = ArrayList<Log>()
+    var tagsList: List<Tag> = ArrayList<Tag>()
     var database: RoomDB? = null
     var fab_add: FloatingActionButton? = null
     var fab_list: FloatingActionButton? = null
@@ -46,6 +48,8 @@ class HomeActivity : AppCompatActivity() {
                 database!!.mainDAO().insert(tag)
             }
         }
+
+        tagsList = database!!.mainDAO().getAllTags()
 
 
         val currentDateTimeString =
@@ -78,7 +82,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun openLogsMakerForResult() {
-        startForResult.launch(Intent(this, LogsMakerActivity::class.java))
+        val intent = Intent(this, LogsMakerActivity::class.java)
+        val tags = Bundle()
+        tags.putSerializable("tags", tagsList as Serializable)
+        intent.putExtra("tags", tags)
+        startForResult.launch(intent)
     }
 
 

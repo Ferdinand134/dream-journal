@@ -56,6 +56,13 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"/>
     </LinearLayout>
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/tagGroup"
+        android:layout_width="match_parent"
+        app:chipSpacingVertical="2dp"
+         android:layout_height="80dp"
+        android:textColor="@color/vanilla"
+        />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_back"
         android:layout_width="wrap_content"
