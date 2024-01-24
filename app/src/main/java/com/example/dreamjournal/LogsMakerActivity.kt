@@ -25,7 +25,7 @@ class LogsMakerActivity : AppCompatActivity() {
     var tagGroup : ChipGroup ?= null
     var log : Log ?= null
     var selectedTags : List<Tag> = ArrayList<Tag>() //??
-    var logTagMap : LogTagMap ?= null
+    var logTagMaps : List<LogTagMap> = ArrayList<LogTagMap>()
     var isOldLog = false;
     var tags : List<Tag> = ArrayList<Tag>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,17 +68,23 @@ class LogsMakerActivity : AppCompatActivity() {
                 if (!isOldLog) {
                     log = Log()
                     log?.date = SimpleDateFormat("dd MMM yyy", Locale.US).format(Date())
-                    logTagMap = LogTagMap()
+                    //logTagMap = LogTagMap()
                 }
 
                 log?.title = title
                 log?.content = description
                 val selectedTagIDs = tagGroup.getCheckedChipIds()
                 for (i in selectedTagIDs) {
-                    // do things with logtagmap
+                    val ltm = LogTagMap()
+                    ltm.log_id = log.ID
+                    ltm.tag_id = i
+                    logTagMaps.add(ltm)
                 }
                 val intent = Intent()
                 intent.putExtra("log", log)
+                val mapBundle = Bundle()
+                mapBundle.putSerializable("maps", logTagMaps as Serializable)
+                intent.putExtra("maps", mapBundle)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
         }
