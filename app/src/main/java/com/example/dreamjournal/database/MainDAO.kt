@@ -15,6 +15,9 @@ interface MainDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(tag: Tag)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(ltm: LogTagMap)
+    
     @Query("SELECT * FROM tag ORDER BY id DESC")
     fun getAllTags():List<Tag>
     @Query("SELECT * FROM log ORDER BY id DESC")
