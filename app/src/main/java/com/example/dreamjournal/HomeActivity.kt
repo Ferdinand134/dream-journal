@@ -96,6 +96,12 @@ class HomeActivity : AppCompatActivity() {
                 val intent = result.data
                 val l = intent?.getSerializableExtra("log", Log::class.java)
                 database?.mainDAO()?.insert(l!!)
+                val maps = intent?.getBundleExtra("maps")!!.getSerializable("maps", ArrayList::class.java)
+                if (maps != null) {
+                    for (m in maps as ArrayList<LogTagMap) {
+                        database?.mainDAO()?.insert(m!!)
+                    }
+                }
                 logsList = database!!.mainDAO().getAllLogs()
                 logsListAdapter?.notifyDataSetChanged()
             }
@@ -112,7 +118,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     } */
-    private fun filter(newText: String) {
+    /*private fun filter(newText: String) {
         val filteredList: ArrayList<Log> = ArrayList<Log>()
         for (log in logsList) {
             if (log.title.lowercase().contains(newText.lowercase())
@@ -122,7 +128,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         logsListAdapter?.filterList(filteredList)
-    }
+    }*/
 
 
     /*private fun updateRecycler(logsList: List<Log>) {
