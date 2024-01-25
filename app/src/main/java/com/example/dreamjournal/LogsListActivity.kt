@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.dreamjournal.Adapters.LogsListAdapter
 import com.example.dreamjournal.database.RoomDB
 import com.example.dreamjournal.models.Log
+import com.example.dreamjournal.models.Tag
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.io.Serializable
 
 
 class LogsListActivity : AppCompatActivity() {
@@ -24,6 +26,7 @@ class LogsListActivity : AppCompatActivity() {
     var logs : List<Log> = ArrayList<Log>()
     var database: RoomDB? = null
     var textView_placeholder: TextView? = null
+    var tagLists = ArrayList<ArrayList<Tag>>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logs_list)
@@ -35,13 +38,25 @@ class LogsListActivity : AppCompatActivity() {
         logs = database!!.mainDAO().getAllLogs()
         textView_placeholder = findViewById(R.id.textView_placeholder)
 
-        updateRecycler(logs);
+        android.util.Log.i("LogsListActivity", "making tagLists")
+        logs.forEachIndexed { i, log ->
+            android.util.Log.i("LogsListActivity", "hey")
+            val mapsFiltered = database!!.mainDAO().getMapsByLogId(log.ID)
+            tagLists.add(i, ArrayList<Tag>())
+            for (m in mapsFiltered) {
+                val t = database!!.mainDAO().getTagById(m.tag_id)
+                android.util.Log.i("LogsListActivity", "title: " + t.title)
+                tagLists[i].add(t)
+            }
+        }
+
+        updateRecycler(logs, tagLists)
         val logsClickListener = object : LogsClickListener {
             override fun onClick(log : Log) {
                 openLogsMakerForResult(log)
             }
         }
-        logsListAdapter = LogsListAdapter(this, logs, logsClickListener)
+        logsListAdapter = LogsListAdapter(this, logs, tagLists, logsClickListener)
         recyclerView?.setAdapter(logsListAdapter)
         fab_back?.setOnClickListener {
             val intent = Intent()
@@ -53,9 +68,13 @@ class LogsListActivity : AppCompatActivity() {
     }
 
     fun openLogsMakerForResult(log : Log) {
-        val intent = Intent(this, LogsMakerActivity::class.java)
-        intent.putExtra("old_note", log)
-        startForResult.launch(intent)
+        val i = Intent(this, LogsMakerActivity::class.java)
+        i.putExtra("old_note", log)
+        val tagsList = intent?.getBundleExtra("maps")!!.getSerializable("maps", ArrayList::class.java)
+        val tags = Bundle()
+        tags.putSerializable("tags", tagsList as Serializable)
+        i.putExtra("tags", tags)
+        startForResult.launch(i)
     }
 
 
@@ -67,11 +86,11 @@ class LogsListActivity : AppCompatActivity() {
                 database?.mainDAO()?.insert(l!!)
                 logs = database!!.mainDAO().getAllLogs()
                 logsListAdapter?.notifyDataSetChanged()
-                updateRecycler(logs)
+                updateRecycler(logs, tagLists)
             }
         }
 
-    private fun updateRecycler(logsList: List<Log>) {
+    private fun updateRecycler(logsList: List<Log>, tagLists: List<List<Tag>>) {
 
         if (logs.isNotEmpty()){
             textView_placeholder?.setVisibility(View.GONE)
@@ -80,7 +99,7 @@ class LogsListActivity : AppCompatActivity() {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
-        logsListAdapter = LogsListAdapter(this, logsList, object : LogsClickListener {
+        logsListAdapter = LogsListAdapter(this, logsList, tagLists, object : LogsClickListener {
             override fun onClick(log: Log) {
                 super.onClick(log)
             }})

@@ -59,8 +59,7 @@
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/tagGroup"
         android:layout_width="match_parent"
-        app:chipSpacingVertical="2dp"
-         android:layout_height="80dp"
+        android:layout_height="80dp"
         android:textColor="@color/vanilla"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton

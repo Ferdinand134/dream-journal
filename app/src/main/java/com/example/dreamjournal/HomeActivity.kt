@@ -12,6 +12,7 @@ import android.app.Activity
 import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.dreamjournal.models.LogTagMap
 import com.example.dreamjournal.models.Tag
 import java.io.Serializable
 import java.text.SimpleDateFormat
@@ -42,9 +43,9 @@ class HomeActivity : AppCompatActivity() {
 
         if (database!!.mainDAO().getAllTags().isEmpty()) {
             val tagNames = arrayOf("happy", "nightmare", "lucid", "sad", "vivid")
-            for (t in tagNames) {
+            for (name in tagNames) {
                 val tag = Tag()
-                tag.title = t
+                tag.title = name
                 database!!.mainDAO().insert(tag)
             }
         }
@@ -64,19 +65,23 @@ class HomeActivity : AppCompatActivity() {
 
         fab_list?.setOnClickListener {
             val intent = Intent(this, LogsListActivity::class.java)
+            val tags = Bundle()
+            tags.putSerializable("tags", tagsList as Serializable)
+            intent.putExtra("tags", tags)
+            android.util.Log.i("HomeActivity", "Started LogsList")
             startActivity(intent)
         }
 
-        searchView_home?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        /*searchView_home?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            /*override fun onQueryTextChange(newText: String?): Boolean {
                 filter(newText!!)
                 return true
-            }
-        })
+            }*/
+        })*/
 
 
     }
@@ -96,10 +101,11 @@ class HomeActivity : AppCompatActivity() {
                 val intent = result.data
                 val l = intent?.getSerializableExtra("log", Log::class.java)
                 database?.mainDAO()?.insert(l!!)
-                val maps = intent?.getBundleExtra("maps")!!.getSerializable("maps", ArrayList::class.java)
+                var maps = intent?.getBundleExtra("maps")!!.getSerializable("maps", ArrayList::class.java)
                 if (maps != null) {
-                    for (m in maps as ArrayList<LogTagMap) {
-                        database?.mainDAO()?.insert(m!!)
+                    maps = maps as ArrayList<LogTagMap>
+                    for (m in maps) {
+                        database?.mainDAO()?.insert(m)
                     }
                 }
                 logsList = database!!.mainDAO().getAllLogs()

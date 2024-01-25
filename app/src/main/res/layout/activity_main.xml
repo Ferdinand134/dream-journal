@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/title_home"
-        android:text="Dream Journal"
+        android:text="DreamMe"
         android:hint="title"
         android:textColor="@color/white"
         android:textSize="40dp"

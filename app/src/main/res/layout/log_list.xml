@@ -37,12 +37,21 @@
             android:text="bontent"
             android:textSize="15sp"
             android:textColor="@color/vanilla"
-            android:maxLines="10"
+            android:maxLines="15"
             android:textStyle="normal"
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_variablefont_wdth_wght"
+            />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/tagGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vanilla"
+            android:clickable="false"
+            app:chipSpacingVertical="1dp"
+            app:chipSpacingHorizontal="1dp"
             />
         <TextView
             android:id="@+id/log_date"

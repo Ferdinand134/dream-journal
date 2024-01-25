@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @Entity(tableName = "log")
 class Log : Serializable {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     var ID: Int = 0
 
     @ColumnInfo(name = "title")
